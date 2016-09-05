@@ -1,0 +1,16 @@
+#{:name "native"
+  :version "0.1.0"
+  :license "GPLv2"
+  :entry-point "native.zp"
+  :type :template
+  :tests []
+  :author #{:name "Veit Heller"
+            :email "veit@veitheller.de"
+            :github "@hellerve"}
+  :location #{:github "hellerve/native"
+              :zpr "native"}
+  :zepto #{:version :any
+           :ez #f
+           :bz #f}
+  :dependencies ("zepto-lang/mustache")
+  :dev-dependencies ()}

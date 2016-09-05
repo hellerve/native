@@ -1,0 +1,26 @@
+(module "native"
+  (export
+    `("build" ,build))
+
+  (readme (zeps:get-template "README.md"))
+  (main (zeps:get-template "main.hs"))
+  (cabal (zeps:get-template "main.cabal"))
+  (info (zeps:get-template "module.zp"))
+
+  (build (lambda (name)
+    "builds a native package. It will generate a README, a minimal module.zp file
+     and a Haskell source file.
+
+     This function is called by zeps.
+
+     params:
+      - name: the package name
+     complexity: O(1)
+     returns: nil"
+    (begin
+      (load "mustache/mustache")
+      (import-all "mustache")
+      (zeps:build-template "README.md" (mustache:template readme (make-hash "name" name)))
+      (zeps:build-template (++ name ".hs") (mustache:template main (make-hash "name" name)))
+      (zeps:build-template (++ name ".cabal") (mustache:template cabal (make-hash "name" name)))
+      (zeps:build-template "module.zp" (mustache:template info (make-hash "name" name)))))))
