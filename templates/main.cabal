@@ -1,7 +1,5 @@
 name:                {{name}}
 version:             0.1.0.0
-license:             BSD3
-license-file:        LICENSE
 author:              TODO
 maintainer:          TODO
 build-type:          Simple
